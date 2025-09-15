@@ -1,0 +1,105 @@
+# OverTheWire Bandit Progress Notes
+
+
+## Level 0 → Level 1
+**Objective:** Retrieve the password for the next level from `readme` in home directory.
+
+**Commands Used:**
+```bash
+cat readme
+Explanation:
+
+Used cat to display the content of the file readme containing the password.
+
+Verified we are in the correct home directory using pwd if necessary.
+
+Meta Insights:
+
+Identify the simplest path first (basic navigation, file reading).
+
+Always check directory location before reading files to avoid wasted steps.
+
+Defensive mindset: ensure file exists and readable before relying on it in scripts.
+Level 2 → Level 3
+
+Objective: Retrieve password from maybehere07 file in inhere directory.
+
+Commands Used:
+
+cd inhere
+ls
+file maybehere07
+cat maybehere07
+
+
+Output:
+
+< RETRIEVED_PASSWORD_HERE >
+
+
+Explanation:
+
+file helps identify human-readable vs binary files.
+
+Use cat only on human-readable files to avoid junk output.
+
+Meta Insights:
+
+Look for file properties: human-readable, size clues, permissions.
+
+Defensive mindset: do not blindly cat all files; filter intelligently.
+
+Level 3 → Level 4
+
+Objective: Find password in file with unusual characters (- in name).
+
+Commands Used:
+
+ls
+cat ./-file_name
+
+
+Output:
+
+ < RETRIEVED_PASSWORD_HERE >
+
+
+Explanation:
+
+Files starting with - require ./ prefix or escaping to avoid interpreting as options.
+
+Meta Insights:
+
+Think about edge cases in file naming.
+
+Meta approach: anticipate input quirks and prepare defensive command usage.
+
+Level 4 → Level 5
+
+Objective: Password stored in human-readable file, size 1033 bytes, not executable.
+
+Commands Used:
+
+find . -type f -size 1033c ! -executable -exec cat {} \;
+
+
+Output:
+
+< RETRIEVED_PASSWORD_HERE >
+
+
+Explanation:
+
+find searches based on size, type, and executable permission.
+
+cat used only on files meeting criteria to retrieve password.
+
+Meta Insights:
+
+Use properties of files to filter search (size, permissions, type).
+
+Automated, repeatable approach reduces human error
+
+---
+
+
